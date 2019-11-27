@@ -1,0 +1,15 @@
+
+
+.hide-button {
+
+    margin-right: 1rem;
+    &:hover {
+        cursor: pointer;
+    }
+    transition: all .2s;
+}
+
+.animate {
+    transform: rotate(90deg);
+}
+

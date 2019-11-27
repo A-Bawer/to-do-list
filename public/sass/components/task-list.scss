@@ -1,0 +1,28 @@
+
+
+.task-list {
+    margin-top: 1rem;
+    list-style-type: none;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+// .detail-sub{
+//     padding-bottom: 1rem;
+//     border-bottom: 1px solid rgba($main-color, .2);
+// }
+
+ol.list li{
+    line-height: 1;
+}
+
+ol.list li:last-of-type .detail-sub {
+    border-bottom: none;
+}
+
+.delete-all-button {
+    float: right;
+    margin-right: 2rem;
+}

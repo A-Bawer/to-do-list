@@ -1,0 +1,30 @@
+
+
+<% include partials/header %>
+<div class="row header__options ">
+        <a href="/" class="col-6 active">Daily tasks</a>
+        <a href="/long-term" class="col-6">Long term tasks</a>
+    </div>
+</header>
+<section class="task-create text-center container-fluid">
+    <h1 class="heading-primary">Create new daily task</h1>
+    <form action="/" method="POST" class="daily-add-form form">
+        <div class="row form-input">
+            <input type="text" name="title" class="title form-control col-md-4 offset-md-1" placeholder="Title">
+            <input type="text" name="detail" class="detail form-control col-md-5" placeholder="Detail">
+            <button class="btn btn-success col-md-1">Submit</button>
+        </div>
+    </form>
+</section>
+    <form class="delete-all-button" action="/deleteAll?_method=delete" method="post">
+        <button class="btn btn-danger">Delete all</button>
+    </form>
+    <ul class="main-list">
+
+    </ul>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/daily/index.js"></script>
+</body>
+</html>

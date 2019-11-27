@@ -1,0 +1,136 @@
+ <form action="/daily/<%= task._id %>/subtask"class="" method="POST">
+                   <div class="mr-sm-top form-input row">
+                        <input class="form-control col-md-3" type="text" name="title">
+                        <input class="form-control col-md-3" type="text" name="detail">
+                        <button class="btn btn-success col-md-1">Submit</button>
+                   </div>
+                </form>
+
+
+
+
+
+
+
+      var num = req.body.sub.length;
+    if(num > 0 && num <= 9){
+        for(var i = 0; i< num; i++){
+            SubTask.create({
+                title: req.body.sub[i]['title'],
+                detail: req.body.sub[i]['detail'],
+                shortTerm: true
+            }, function(err,createdSub){
+                if(err) { console.log(err)}
+                else {
+                    Daily.findById(req.params.id, function(err,foundTask){
+                        if(err){ console.log(err)}
+                        else {
+                            foundTask.subTasks.push(createdSub);
+                            foundTask.save(function(err,data){
+                                if(err) { console.log(err);}
+                                console.log(data);
+                            });
+                        }
+                    });
+                }
+            });
+        }
+        res.redirect('/');
+    }
+
+
+?_method=DELETE
+
+
+
+
+
+
+
+
+    // $('.hide-button').on('click', function(){
+    //     $(this).toggleClass('animate');
+    //     $(this).siblings('.list').toggleClass('hide');
+    //     $(this).parent().submit();
+    // });
+
+    // $('.minitask-title').on('click', function(){
+    //     $(this).parent().toggleClass('done');
+    // });
+
+     // <% if(task.done == true){ %> done <% } %> 
+
+     <% if(task.dropdown){ %> animate <% } %>
+
+                         $.ajax({
+                        method: 'get',
+                        url: "/daily-tasks"
+                    }).done(function(data){
+                        tasks_parent.html(data);
+                    });
+
+
+// move to daily 
+                    <form action="/<%= subtask._id %>/moveToDaily" method="POST">
+                        <input type="text" name="title" hidden value="<%= subtask.title %>">
+                        <input type="text" name="detail" hidden value="<%= subtask.detail %>">
+                        <button>Move To Daily</button>
+                    </form>
+
+
+
+
+
+                    <% tasks.forEach(function(task){ %>
+    <div>
+        <button class="daily-edit-button">Edit</button>
+        <form action="/<%= task._id %>/editLong?_method=PUT" method="POST" class="daily-edit-form">
+            <input type="text" name="body[title]" value="<%= task.title %>">
+            <textarea name="body[detail]" cols="30" rows="10"><%= task.detail %></textarea>
+            <button>Submit</button>
+        </form>
+        <form action="/<%= task._id %>/deleteLong?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+    </div>
+    <li><%- task.title %>
+        <ol>
+            <% task.subTasks.forEach(function(subtask){ %>
+                <div>
+                    <button class="daily-edit-button">Edit</button>
+                    <form action="/<%= subtask._id %>/editSubtask?_method=PUT" method="POST" class="daily-edit-form">
+                        <input type="text" name="body[title]" value="<%= subtask.title %>">
+                        <textarea name="body[detail]" cols="30" rows="10"><%= subtask.detail %></textarea>
+                        <button>Submit</button>
+                    </form>
+                    <form action="/<%= subtask._id %>/deleteSubtask?_method=DELETE" method="POST">
+                        <button>Delete</button>
+                    </form>
+                </div>
+                <div>
+                    <button class="daily-edit-button">Create mini task</button>
+                    <form action="/<%= subtask._id %>/mini" method="POST" class="daily-edit-form">
+                        <input type="text" name="body[title]">
+                        <textarea name="body[detail]" cols="30" rows="10"></textarea>
+                        <button>Submit</button>
+                    </form>
+                </div>
+                <li><%- subtask.title %>
+                    <ul>
+                        <% subtask.miniTasks.forEach(function(minitask){ %>
+                            <form action="/<%= subtask._id %>/<%= minitask.title %>/deleteMini?_method=DELETE" method="POST">
+                                <button>Delete</button>
+                            </form>
+                            <li><%- minitask.title %></li>    
+                        <% }); %>
+                    </ul>
+                </li>
+            <% }); %>
+        </ol>
+        <form action="/long-term/<%= task._id %>/subtask" method="POST">
+            <input type="text" name="title">
+            <input type="text" name="detail">
+            <button>Submit</button>
+        </form>
+    </li>
+<% }); %>

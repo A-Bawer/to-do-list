@@ -1,0 +1,20 @@
+
+<% subtask.miniTasks.forEach(function(minitask){ %>
+    <li>
+        <span class="minitask-title"><%= minitask.title %></span>
+        <div class="dropdown dropright">
+            <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropright</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <form class="mini-delete-form" data-id="<%= subtask._id %>" data-title="<%= minitask.title %>" >
+                    <button class="dropdown-item dropdown-button__delete">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div class="detail"><%= minitask.detail %></div>
+    </li>    
+<% }); %>
+<script src="js/mini.js"></script>
+
+    

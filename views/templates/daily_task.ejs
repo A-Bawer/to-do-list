@@ -1,0 +1,46 @@
+<% tasks.forEach(function(task){ %>
+    <li class="task-list  <% if(task.done == true){ %> done <% } %> ">
+
+        <img data-id="<%= task._id %>" class="hide-button dropdown-icon " width="22" height="22" src="css/circle-right.png" alt="">
+        <span class="title">
+            <form class="task-done-form inline" data-id="<%= task._id %>">
+                <span class="task-done-text"><%= task.title %></span>
+            </form>    
+        </span>                
+        <div class="dropdown dropright">
+            <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropright</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <button class="dropdown-item daily-edit-button">Edit</button>
+                <form class="daily-delete-form" data-id="<%= task._id %>">
+                    <button class="dropdown-item dropdown-button__delete">Delete</button>
+                </form>
+            </div>
+        </div> 
+        <div><%= task.detail %></div> 
+        <form data-id='<%= task._id %>' class="daily-edit-form edit-daily">
+            <div class="row form-input mr-sm-top">
+                <input value="<%= task.title %>" class="title form-control col-md-4" placeholder="Title">
+                <input type="text" value='<%= task.detail %>' class="detail form-control col-md-5" placeholder="Detail">
+                <button class="btn btn-success col-md-1">Edit</button>
+            </div>
+        </form>   
+        <ol class="list hide">
+            <form class="subtask-insert-form" data-id="<%= task._id %>">
+                <div class="mr-sm-top mr-sm-bottom form-input row">
+                    <input placeholder="Add a new subtask title" class="title form-control col-md-5" type="text" name="title">
+                    <input placeholder="detail" class="detail form-control col-md-5" type="text" name="detail">
+                    <button type="submit" class="btn btn-success col-md-1">Create</button>
+                </div>
+            </form>
+            <span class="subtask-items" data-id="<%= task._id %>">
+
+            </span>
+        </ol>
+        </div>
+    </li>
+    <hr>
+<% }); %>
+
+<script src="js/daily/daily-tasks.js"></script>

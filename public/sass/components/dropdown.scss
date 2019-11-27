@@ -1,0 +1,27 @@
+
+
+.dropdown {
+    display:inline;
+    margin-left: 1rem;
+}
+
+button.dropdown-toggle {
+    height:2rem;
+
+    &::after {
+        padding: 0;
+        margin-bottom: .8rem;
+    }
+}
+
+img.minitask {
+    margin-right: 0;
+}
+
+
+span.title:hover,
+.subtask-title,
+.minitask-title {
+    cursor: pointer;
+}
+

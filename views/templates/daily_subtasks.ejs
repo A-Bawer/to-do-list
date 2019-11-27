@@ -1,0 +1,62 @@
+
+    <% task.subTasks.forEach(function(subtask){ %>
+        <li class="<% if(subtask.done==true){%> done <%} %>">
+            <span class="title">
+                <form class="subtask-done-form inline" data-id="<%= subtask._id %>">
+                    <span class="subtask-done-text"><%= subtask.title %></span>
+                </form>
+            </span>  
+            <div class="dropdown dropright">
+                <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropright</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item daily-edit-button"  href="#">Edit</button>
+                    <form class="subtask-delete-form" data-id="<%= subtask._id %>">
+                        <button class="dropdown-item dropdown-button__delete">Delete</button>
+                    </form>
+                    <button class="dropdown-item mini-edit-button">Create mini task</button>
+                    <button data-id="<%= subtask._id %>" class="dropdown-item show-mini">show mini tasks</button>
+                </div>
+                <div class="detail"><%= subtask.detail %></div> 
+                <form data-id='<%= subtask._id %>' class="daily-edit-form edit-subtask">
+                    <div class="row form-input mr-sm-top">
+                        <input name="body[title]" value="<%= subtask.title %>" class="title form-control col-md-4" placeholder="Title">
+                        <input type="text" value='<%= subtask.detail %>' name="body[detail]" class="detail form-control col-md-5" placeholder="Detail">
+                        <button class="btn btn-success col-md-1">Edit</button>
+                    </div>
+                </form>
+                <form data-id="<%= subtask._id %>" class="mini-edit-form">
+                    <div class="row form-input mr-sm-top">
+                        <input name="body[title]" class="title form-control col-md-4" placeholder="Title">
+                        <input type="text" name="body[detail]" class="detail form-control col-md-5" placeholder="Detail">
+                        <button class="btn btn-success col-md-1">Create</button>
+                    </div>
+                </form>
+                
+            </div>
+                
+            <ul class="minitask-list" >
+                <% subtask.miniTasks.forEach(function(minitask){ %>
+                    <li>
+                        <span class="minitask-title"><%= minitask.title %></span>
+                        <div class="dropdown dropright">
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropright</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <form class="mini-delete-form" data-id="<%= subtask._id %>" data-title="<%= minitask.title %>" >
+                                    <button class="dropdown-item dropdown-button__delete">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="detail"><%= minitask.detail %></div>
+                    </li>    
+                <% }); %>
+            </ul>
+            <hr>
+        </li>
+    <% }); %>
+   
+<script src="js/subtasks.js"></script>
+

@@ -1,0 +1,22 @@
+
+
+.header {
+    border-bottom: 1px solid $color-1;
+    &__text {
+        padding: 3rem 0;
+        background-color: $main-color;
+    }
+
+    &__options {
+        background-color: $tertiary-color;
+        a{
+            color: $color-1;
+            padding: 2rem 0;
+
+            &:hover {
+                background-color: $secondary-color;
+                text-decoration: none;
+            }
+        }
+    }
+}
